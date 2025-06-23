@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import avatar from "../assets/avatar.png";
 
 const Profile = () => {
+  const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const [profile, setProfile] = useState({
     name: 'Fed',
@@ -58,57 +60,81 @@ const Profile = () => {
     }
   };
 
+  const handleSignOut = () => {
+    localStorage.removeItem('isAdminLoggedIn');
+    navigate('/login');
+  };
+
   return (
     <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <h2>Profile Settings</h2>
-        {!isEditing ? (
-          <button 
-            onClick={() => setIsEditing(true)}
-            style={{
-              background: '#2d3edb',
-              color: '#fff',
-              border: 'none',
-              padding: '0.75rem 1.5rem',
-              borderRadius: '6px',
-              cursor: 'pointer',
-              fontSize: '0.9rem'
-            }}
-          >
-            Edit Profile
-          </button>
-        ) : (
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
-            <button 
-              onClick={handleSave}
-              style={{
-                background: '#27ae60',
-                color: '#fff',
-                border: 'none',
-                padding: '0.75rem 1.5rem',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontSize: '0.9rem'
-              }}
-            >
-              Save Changes
-            </button>
-            <button 
-              onClick={handleCancel}
-              style={{
-                background: '#95a5a6',
-                color: '#fff',
-                border: 'none',
-                padding: '0.75rem 1.5rem',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontSize: '0.9rem'
-              }}
-            >
-              Cancel
-            </button>
-          </div>
-        )}
+        <div style={{ display: 'flex', gap: '0.5rem' }}>
+          {!isEditing ? (
+            <>
+              <button 
+                onClick={() => setIsEditing(true)}
+                style={{
+                  background: '#2d3edb',
+                  color: '#fff',
+                  border: 'none',
+                  padding: '0.75rem 1.5rem',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontSize: '0.9rem'
+                }}
+              >
+                Edit Profile
+              </button>
+              <button
+                onClick={handleSignOut}
+                style={{
+                  background: '#c0392b',
+                  color: '#fff',
+                  border: 'none',
+                  padding: '0.75rem 1.5rem',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontSize: '0.9rem',
+                  marginLeft: '1rem'
+                }}
+              >
+                Sign Out
+              </button>
+            </>
+          ) : (
+            <>
+              <button 
+                onClick={handleSave}
+                style={{
+                  background: '#27ae60',
+                  color: '#fff',
+                  border: 'none',
+                  padding: '0.75rem 1.5rem',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontSize: '0.9rem'
+                }}
+              >
+                Save Changes
+              </button>
+              <button 
+                onClick={handleCancel}
+                style={{
+                  background: '#95a5a6',
+                  color: '#fff',
+                  border: 'none',
+                  padding: '0.75rem 1.5rem',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontSize: '0.9rem'
+                }}
+              >
+                Cancel
+              </button>
+            </>
+          )}
+        </div>
       </div>
 
       <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
