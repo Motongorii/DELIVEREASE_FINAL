@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 // --- LocalStorage Utility ---
 const getFromStorage = (key, initialValue) => {
@@ -20,7 +20,7 @@ const statusColors = {
 };
 
 const RequestStatus = () => {
-    const [requests, setRequests] = useState(() => getFromStorage('deliveryRequests', []));
+    const [requests] = useState(() => getFromStorage('deliveryRequests', []));
 
     if (requests.length === 0) {
         return (

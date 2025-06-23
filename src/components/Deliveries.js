@@ -22,7 +22,7 @@ const deliveryData = [
 ];
 
 const Deliveries = () => {
-  const [deliveries, setDeliveries] = useState(() => getFromStorage('deliveries', deliveryData));
+  const [deliveries] = useState(() => getFromStorage('deliveries', deliveryData));
   const [drivers] = useState(() => getFromStorage('drivers', []));
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");

@@ -13,7 +13,7 @@ const getFromStorage = (key, initialValue) => {
 // --- End LocalStorage Utility ---
 
 const History = () => {
-  const [deliveries, setDeliveries] = useState(() => getFromStorage('deliveries', []));
+  const [deliveries] = useState(() => getFromStorage('deliveries', []));
   const [drivers] = useState(() => getFromStorage('drivers', []));
 
   const getDriverName = (driverId) => {
